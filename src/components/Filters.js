@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-function Filters(props) {
+function Filters({ properties, selectedCategory, selectedProperty, setSelectedCategory, setSelectedProperty }) {
     const classes = useStyles()
 
     const categories = [
@@ -35,7 +35,7 @@ function Filters(props) {
         <MenuItem value={category.endpoint} key={category.name}> {category.name} </MenuItem>
     )
 
-    const renderProperties = props.properties.map(property =>
+    const renderProperties = properties.map(property =>
         <MenuItem value={property.url} key={property.name}> {property.name} </MenuItem>
     )
 
@@ -45,8 +45,8 @@ function Filters(props) {
                 <InputLabel id='categories-label'>Category</InputLabel>
                 <Select
                     labelId='categories-label'
-                    value={props.selectedCategory}
-                    onChange={(event) => props.setSelectedCategory(event.target.value)}
+                    value={selectedCategory}
+                    onChange={(event) => setSelectedCategory(event.target.value)}
                 >
                     <MenuItem value=''>None</MenuItem>
                     {renderCategories}
@@ -57,9 +57,9 @@ function Filters(props) {
                 <InputLabel id='properties-label'>Property</InputLabel>
                 <Select
                     labelId='properties-label'
-                    value={props.selectedProperty}
-                    onChange={(event) => props.setSelectedProperty(event.target.value)}
-                    disabled={props.properties.length === 0}
+                    value={selectedProperty}
+                    onChange={(event) => setSelectedProperty(event.target.value)}
+                    disabled={properties.length === 0}
                 >
                     <MenuItem value=''>None</MenuItem>
                     {renderProperties}

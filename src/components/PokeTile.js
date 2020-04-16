@@ -33,14 +33,14 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-function PokeTile(props) {
+function PokeTile({ name }) {
     const [data, setData] = useState(null)
 
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then(response => response.json())
             .then(response => setData(response))
-    }, [props.name])
+    }, [name])
 
     const classes = useStyles()
 
@@ -54,7 +54,7 @@ function PokeTile(props) {
                 <Box boxShadow={3} borderRadius={3}>
                     <Card className={classes.card} >
 
-                        <img alt={data.name} src={data.sprites.front_default} className={classes.image}/>
+                        <img alt={data.name} src={data.sprites.front_default} className={classes.image} />
 
                         <Typography variant='subtitle1'>
                             {data.name}
